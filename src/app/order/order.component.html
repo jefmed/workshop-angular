@@ -22,16 +22,18 @@
           <p class="lead">Endereço de Entrega:</p>
         </div>
         <div class="col-sm-6 col-xs-12">
-          <mt-input-container errorMessage="Campo obrigatório, minimo 5 caracteres!" label="Endereço">
-            <input type="text" name="adress" class="form-control" ngModel required minlength="5" autocomplete="off" placeholder="Endereço">
+          <mt-input-container errorMessage="Obrigatório e minimo 5 caracteres!" label="Endereço">
+            <input type="text" name="adress" class="form-control" ngModel required minlength="5" autocomplete="off"
+                   placeholder="Endereço">
           </mt-input-container>
         </div>
-        <div class="col-sm-2 col-xs-6">
-          <mt-input-container errorMessage="Campo obrigatorio!" label="Numero">
-            <input type="text" class="form-control" name="number" required ngModel placeholder="Número" autocomplete="off">
+        <div class="col-sm-3 col-xs-6">
+          <mt-input-container errorMessage="Obrigatório e somente numeros!" label="Numero">
+            <input type="text" class="form-control" name="number" required ngModel placeholder="Número"
+                   autocomplete="off" pattern="^[0-9]*$">
           </mt-input-container>
         </div>
-        <div class="col-sm-4 col-xs-6">
+        <div class="col-sm-3 col-xs-6">
           <mt-input-container label="Complemento">
             <input type="text" class="form-control" name="optional" ngModel placeholder="Complemento">
           </mt-input-container>
@@ -100,27 +102,7 @@
           <p class="lead">Formas de Pagamento:</p>
 
           <div class="form-group">
-            <div>
-              <label>
-                <div class="iradio_flat-red checked" aria-checked="false" aria-disabled="false"
-                     style="position: relative;">
-                  <input type="radio" name="r3" class="flat-red" checked="" style="position: absolute; opacity: 0;"/>
-                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                </div>
-                Dinheiro
-              </label>
-            </div>
-            <div>
-              <label>
-                <div class="iradio_flat-red" aria-checked="false" aria-disabled="false"
-                     style="position: relative;">
-                  <input type="radio" name="r3" class="flat-red" checked="" style="position: absolute; opacity: 0;"/>
-                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                </div>
-                Cartão de Débito
-              </label>
-            </div>
-
+            <mt-radio [options]="paymentOptions" name="paymentOption" ngModel></mt-radio>
           </div>
 
         </div>
@@ -130,7 +112,8 @@
 
           <div class="table-responsive">
             <table class="table">
-              <tbody><tr>
+              <tbody>
+              <tr>
                 <th style="width:50%">Itens:</th>
                 <td class="text-right">R$ 20,00</td>
               </tr>
@@ -142,7 +125,8 @@
                 <th>Total:</th>
                 <td class="text-right">R$ 28,00</td>
               </tr>
-              </tbody></table>
+              </tbody>
+            </table>
           </div>
         </div>
         <!-- /.col -->
@@ -152,7 +136,8 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn btn-success pull-right" [disabled]="!form.valid"><i class="fa fa-credit-card"></i> Concluir Pedido
+        <button class="btn btn-success pull-right" [disabled]="!form.valid"><i class="fa fa-credit-card"></i> Concluir
+          Pedido
         </button>
       </div>
     </div>
