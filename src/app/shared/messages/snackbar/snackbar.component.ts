@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {NotificationService} from '../notification.service';
 import {Observable} from 'rxjs';
@@ -24,22 +24,21 @@ import {Observable} from 'rxjs';
 })
 export class SnackbarComponent implements OnInit {
 
-  message: string = 'Hello Stranger!';
+  message: string;
 
   snackVisibility: string = 'hidden';
 
-  constructor(private notificationService: NotificationService) { }
-
-  ngOnInit() {
-    this.notificationService.notifier.subscribe(message => {
-      this.message = message;
-      this.snackVisibility = 'visible';
-      Observable.timer(3000).subscribe(timer => this.snackVisibility = 'hidden');
-    });
+  constructor(private notificationService: NotificationService) {
   }
 
-/*  toggleSnack() {
-    this.snackVisibility = this.snackVisibility === 'hidden' ? 'visible' : 'hidden';
-  }*/
+  ngOnInit() {
+    this.notificationService.notifier
+      .do(message => {
+        this.message = message;
+        this.snackVisibility = 'visible';
+      })
+      .switchMap(message => Observable.timer(3000))
+      .subscribe(timer => this.snackVisibility = 'hidden');
+  }
 
 }
