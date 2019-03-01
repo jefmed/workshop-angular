@@ -37,7 +37,7 @@ export class RestaurantsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.searchControl = this.formBuilder.control(' ');
+    this.searchControl = this.formBuilder.control('');
 
     this.searchForm = this.formBuilder.group({
       searchControl: this.searchControl
@@ -47,7 +47,7 @@ export class RestaurantsComponent implements OnInit {
       .debounceTime(500)
       .distinctUntilChanged()
       .switchMap(searchTerm => this.restaurantsService.restaurants(searchTerm)
-        .catch(error => Observable.from([])))
+        .catch(error => Observable.of([])))
       .subscribe(restaurants => this.restaurants = restaurants);
 
     this.restaurantsService.restaurants()
